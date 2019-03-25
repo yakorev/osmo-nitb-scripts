@@ -48,13 +48,22 @@ port=5069
 - extensions.conf
 ```
 [gsmsubscriber]
-exten=>_XXXXX,1,Dial(SIP/GSM/${EXTEN})
-exten=>_XXXXX,n,Playback(vm-nobodyavail)
-exten=>_XXXXX,n,HangUp
+exten=>_XXX,1,Dial(SIP/GSM/${EXTEN})
+exten=>_XXX,n,Playback(vm-nobodyavail)
+exten=>_XXX,n,HangUp
 ```
 
 ### Usage
 You can start classic GSM Network, GSM with (e)gprs (2.75G), or osmocom with Asterisk support.
+```
+# ./start_bts
+```
+```
+# ./start_bts_egprs
+```
+```
+# ./start_bts_sip
+```
 
 send USSD message to all subscribers in the network
 ```sh
@@ -70,6 +79,42 @@ $ ./sms_spam.py [extension] [num of repeats] [.MESSAGE]
 ```
 ### Monitor
 ```monitor``` shows all online subscribers and execute user-interactive script, when new phone is connected to the network. For example, it an be hello-message, ussd, or call from bot. The behavior of interactivity with new users is described in the ```config.json``` file.
+![alt text](https://raw.githubusercontent.com/DrLafa/osmo-nitb-scripts/master/monitor.png)
 
+### config.json
+For easy setup of user-interactivity you can use config.json
+- config.json example
+```
+{
+   "scripts":{
+      "sms":{
+         "enabled": false,
+         "sender_extension": 1337,
+         "message":[
+            "If you are reading this, then you are resistance"
+         ]
+      },
+      "ussd":{
+         "enabled": false,
+         "ussd_type": 1,
+         "message":[
+            "Welcome to our l33t hax0r network.",
+            "If you are reading this, then you are true L33T 1337 H4xXx0r"
+         ]
+      },
+      "call":{
+         "enabled": true,
+         "caller_extension": 666,
+         "voice-file": "tt-monkeys"
+      }
+   }
+}
+```
+#### sms
+Send sms to new users. When user connect to network, script choose 1 random message from ```message``` section and sending it from extension ```sender_extension```
 
+#### ussd
+Send ussd to new users. Script choose 1 random message from ```message``` section adn sending it to user
 
+#### call
+Make a call to new user. This function works only with Asterisk support. voice-file is 16-bit 8 kHz wav file. If ```caller_extension``` is false, then the user sees that the phone is not defined.
