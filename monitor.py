@@ -6,7 +6,7 @@ import signal
 import user_interact
 
 def signal_handler(sig, frame):
-	#os.system("sudo rm {}".format("hlr.sqlite3"))
+	os.system("sudo rm {}".format("hlr.sqlite3"))
 	print("\n"*10)
 	print("Exiting...")
 	sys.exit(0)
