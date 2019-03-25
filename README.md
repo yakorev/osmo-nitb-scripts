@@ -78,7 +78,7 @@ send sms from random numbers to selected extension
 $ ./sms_spam.py [extension] [num of repeats] [.MESSAGE]
 ```
 ### Monitor
-```monitor``` shows all online subscribers and execute user-interactive script, when new phone is connected to the network. For example, it an be hello-message, ussd, or call from bot. The behavior of interactivity with new users is described in the ```config.json``` file.
+```monitor``` shows all online subscribers and execute user-interactive script, when new phone is connected to the network. For example, it can be SMS hello-message, USSD, or call from bot. The behavior of interactivity with new users is described in the ```config.json``` file.
 
 ![alt text](https://raw.githubusercontent.com/DrLafa/osmo-nitb-scripts/master/monitor.png)
 
