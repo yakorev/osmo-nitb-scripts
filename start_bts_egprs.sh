@@ -1,26 +1,24 @@
-#!/bin/sh
+sudo su -c "echo \"1\" > /proc/sys/net/ipv4/ip_forward"
 iptables -A POSTROUTING -s 176.16.1.0/24 -t nat -o wlan0 -j MASQUERADE
 sysctl -w kernel.sched_rt_runtime_us=-1
-cd configs
 
-osmo-ggsn &
+osmo-ggsn -c configs/osmo-ggsn.cfg &
 GGSN=$!
 
-osmo-sgsn &
+osmo-sgsn -c configs/osmo-sgsn.cfg &
 SGSN=$!
 
-osmo-nitb -c openbsc_egprs.cfg &
+osmo-nitb -c configs/openbsc_egprs.cfg &
 NITB=$!
 
-chrt -rr 99 osmo-trx-lms &
+chrt -rr 99 osmo-trx-lms -C configs/osmo-trx.cfg &
 TRX=$!
-sleep 5
+sleep 10
 
-osmo-bts-trx &
-BTS=$!
-
-sleep 1
-osmo-pcu &
+osmo-pcu -c configs/osmo-pcu.cfg &
 PCU=$!
+
+osmo-bts-trx -c configs/osmo-bts.cfg &
+BTS=$!
 
 wait $GGSN $SGSN $NITB $BTS $TRX $PCU
