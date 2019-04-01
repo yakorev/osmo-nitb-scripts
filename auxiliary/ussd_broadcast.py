@@ -5,7 +5,7 @@ import sys
 import time
 
 imsi = 999999999999999
-HLR_DATABASE = "configs/hlr.sqlite3"
+HLR_DATABASE = "../hlr.sqlite3"
 
 def check_subscriber(imsi):
     conn.write(b"show subscriber imsi %d\n" % imsi)
