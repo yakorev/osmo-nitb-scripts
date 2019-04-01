@@ -4,7 +4,7 @@ import sqlite3
 import sys
 
 imsi = 999999999999999
-HLR_DATABASE = "configs/hlr.sqlite3"
+HLR_DATABASE = "../hlr.sqlite3"
 
 def check_extension(extension):
     conn.write(b"show subscriber extension %s\n" % extension)
