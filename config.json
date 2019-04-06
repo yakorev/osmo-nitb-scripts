@@ -1,8 +1,8 @@
 {
    "scripts":{
       "sms":{
-         "enabled": false,
-         "sender_extension": 1337,
+         "enabled": true,
+         "sender_extension": "EL33T_H4k3R",
          "message":[
             "If you are reading this, then you are resistance"
          ]
@@ -16,7 +16,7 @@
          ]
       },
       "call":{
-         "enabled": true,
+         "enabled": false,
          "caller_extension": 666,
          "voice-file": "tt-monkeys"
       }

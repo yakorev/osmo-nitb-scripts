@@ -1,5 +1,5 @@
 sudo su -c "echo \"1\" > /proc/sys/net/ipv4/ip_forward"
-iptables -A POSTROUTING -s 176.16.1.0/24 -t nat -o wlan0 -j MASQUERADE
+iptables -A POSTROUTING -s 176.16.1.1/24 -t nat -o wlan0 -j MASQUERADE
 sysctl -w kernel.sched_rt_runtime_us=-1
 
 osmo-ggsn -c configs/osmo-ggsn.cfg &

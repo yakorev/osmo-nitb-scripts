@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 import json
 import random
-from scripts import sms, ussd, call
+from scripts import sms_smpp, ussd, call
 import sys
 
 def interact(extension):
@@ -9,10 +9,10 @@ def interact(extension):
 		config = json.load(data)["scripts"]
 
 	if config["sms"]["enabled"]:
-		sender_extension = int(config["sms"]["sender_extension"])
+		sender_extension = config["sms"]["sender_extension"]
 		message = random.choice(config["sms"]["message"])
 
-		sms.send(sender_extension, extension, message)
+		sms_smpp.send_message(sender_extension, str(extension), message)
 
 	if config["ussd"]["enabled"]:
 		ussd_type = int(config["ussd"]["ussd_type"])
