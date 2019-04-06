@@ -24,6 +24,7 @@ osmo-pcu
 osmo-sip-connector
 libsofia-sip-ua-glib-dev
 asterisk
+libsmpp34
 ```
 for scripts
 ```
