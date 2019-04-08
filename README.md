@@ -25,11 +25,9 @@ osmo-sip-connector
 libsofia-sip-ua-glib-dev
 asterisk
 libsmpp34
-```
-for scripts
-```
 python-sqlite3
 python-telnetlib
+python-smpplib
 ```
 ### Asterisk support
 First of all, you need to configure and start asterisk. Asterisk must be running, before you start ```start_bts_sip.sh```
